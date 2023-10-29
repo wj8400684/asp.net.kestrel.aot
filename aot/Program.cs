@@ -3,7 +3,12 @@ using Microsoft.AspNetCore.Connections;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
-var section = builder.Configuration.GetSection("Kestrel");
+//var section = builder.Configuration.GetSection("Kestrel");
+
+builder.WebHost.UseSockets(o =>
+{
+    o.Backlog = 65535;
+});
 
 builder.WebHost.ConfigureKestrel(options =>
 {
